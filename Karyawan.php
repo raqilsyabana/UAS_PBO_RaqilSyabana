@@ -2,14 +2,14 @@
 // Karyawan.php
 
 abstract class Karyawan {
-    // Properti terenkapsulasi (protected agar bisa diakses oleh kelas anak/turunan)
+    // Properti tetap protected (Enkapsulasi untuk Inheritance)
     protected $id_karyawan;
     protected $nama_karyawan;
     protected $departemen;
     protected $hariKerjaMasuk;
     protected $gajiDasarPerhari;
 
-    // Konstruktor untuk menginisialisasi properti saat objek baru dari kelas anak dibuat
+    // Konstruktor Induk
     public function __construct($id, $nama, $dept, $hariKerja, $gajiDasar) {
         $this->id_karyawan      = $id;
         $this->nama_karyawan    = $nama;
@@ -18,10 +18,31 @@ abstract class Karyawan {
         $this->gajiDasarPerhari = $gajiDasar;
     }
 
-    // Abstract Method 1: Menghitung gaji bersih (Wajib diisi logikanya di kelas anak)
-    abstract public function hitungGajiBersih();
+    // ==========================================
+    // GETTER METHODS (Solusi aman untuk View)
+    // ==========================================
+    public function getIdKaryawan() {
+        return $this->id_karyawan;
+    }
 
-    // Abstract Method 2: Menampilkan profil lengkap karyawan (Wajib diisi logikanya di kelas anak)
+    public function getNamaKaryawan() {
+        return $this->nama_karyawan;
+    }
+
+    public function getDepartemen() {
+        return $this->departemen;
+    }
+
+    public function getHariKerjaMasuk() {
+        return $this->hariKerjaMasuk;
+    }
+
+    public function getGajiDasarPerhari() {
+        return $this->gajiDasarPerhari;
+    }
+
+    // Abstract Methods
+    abstract public function hitungGajiBersih();
     abstract public function tampilkanProfilKaryawan();
 }
 ?>
